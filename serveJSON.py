@@ -9,6 +9,10 @@ class MyServer(BaseHTTPRequestHandler):
     temperature=0
     volume=0
 
+    def end_headers(self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        super().end_headers()
+
     def do_GET(self):
         if '/action' in self.path :
             if 'opt=1' in self.path:
